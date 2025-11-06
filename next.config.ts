@@ -21,7 +21,7 @@ const nextConfig: NextConfig = {
               "img-src 'self' data: blob: https: http:",
               "font-src 'self' https: http: data:",
               "connect-src 'self' https://chatgpt.com https://sentinel.openai.com https://*.oaiusercontent.com https://api.openai.com https://cdn.openai.com https://cdn.platform.openai.com https://browser-intake-datadoghq.com https://api-js.mixpanel.com",
-              "frame-src 'self' https://chatgpt.com https://sentinel.openai.com",
+              "frame-src 'self' https://chatgpt.com https://sentinel.openai.com https://cdn.platform.openai.com",
               "worker-src 'self' blob:",
               "child-src 'self' blob:",
             ].join("; "),
