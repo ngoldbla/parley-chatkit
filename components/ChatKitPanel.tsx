@@ -286,8 +286,7 @@ export function ChatKitPanel({
           if (isDev) {
             console.debug("[ChatKitPanel] Settings button clicked");
           }
-          // TODO: Implement profile settings functionality
-          alert("Profile settings coming soon!");
+          alert("Parley v 0.18 running on ChatGPT 5 with data from the Research Nexus Lakehouse");
         },
       },
     },
