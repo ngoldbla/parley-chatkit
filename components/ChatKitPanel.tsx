@@ -279,6 +279,18 @@ export function ChatKitPanel({
         maxSize: 10485760, // 10MB in bytes
       },
     },
+    header: {
+      leftAction: {
+        icon: "settings-cog",
+        onClick: () => {
+          if (isDev) {
+            console.debug("[ChatKitPanel] Settings button clicked");
+          }
+          // TODO: Implement profile settings functionality
+          alert("Profile settings coming soon!");
+        },
+      },
+    },
     threadItemActions: {
       feedback: false,
     },
