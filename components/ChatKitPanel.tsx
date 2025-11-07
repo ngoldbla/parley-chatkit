@@ -11,7 +11,6 @@ import {
   getThemeConfig,
 } from "@/lib/config";
 import { ErrorOverlay } from "./ErrorOverlay";
-import { SettingsModal } from "./SettingsModal";
 import type { ColorScheme } from "@/hooks/useColorScheme";
 
 export type FactAction = {
@@ -62,7 +61,6 @@ export function ChatKitPanel({
       : "pending"
   );
   const [widgetInstanceKey, setWidgetInstanceKey] = useState(0);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const setErrorState = useCallback((updates: Partial<ErrorState>) => {
     setErrors((current) => ({ ...current, ...updates }));
@@ -281,17 +279,6 @@ export function ChatKitPanel({
         maxSize: 10485760, // 10MB in bytes
       },
     },
-    header: {
-      leftAction: {
-        icon: "settings-cog",
-        onClick: () => {
-          if (isDev) {
-            console.debug("[ChatKitPanel] Settings button clicked");
-          }
-          setIsSettingsOpen(true);
-        },
-      },
-    },
     threadItemActions: {
       feedback: false,
     },
@@ -358,35 +345,27 @@ export function ChatKitPanel({
   }
 
   return (
-    <>
-      <div className="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-sm transition-colors dark:bg-slate-900">
-        <ChatKit
-          key={widgetInstanceKey}
-          control={chatkit.control}
-          className={
-            blockingError || isInitializingSession
-              ? "pointer-events-none opacity-0"
-              : "block h-full w-full"
-          }
-        />
-        <ErrorOverlay
-          error={blockingError}
-          fallbackMessage={
-            blockingError || !isInitializingSession
-              ? null
-              : "Loading assistant session..."
-          }
-          onRetry={blockingError && errors.retryable ? handleResetChat : null}
-          retryLabel="Restart chat"
-        />
-      </div>
-      <SettingsModal
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-        currentTheme={theme}
-        onThemeChange={onThemeRequest}
+    <div className="relative flex h-full w-full flex-col overflow-hidden bg-white shadow-sm transition-colors dark:bg-slate-900">
+      <ChatKit
+        key={widgetInstanceKey}
+        control={chatkit.control}
+        className={
+          blockingError || isInitializingSession
+            ? "pointer-events-none opacity-0"
+            : "block h-full w-full"
+        }
       />
-    </>
+      <ErrorOverlay
+        error={blockingError}
+        fallbackMessage={
+          blockingError || !isInitializingSession
+            ? null
+            : "Loading assistant session..."
+        }
+        onRetry={blockingError && errors.retryable ? handleResetChat : null}
+        retryLabel="Restart chat"
+      />
+    </div>
   );
 }
 
