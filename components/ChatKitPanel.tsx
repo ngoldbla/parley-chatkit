@@ -286,7 +286,7 @@ export function ChatKitPanel({
           if (isDev) {
             console.debug("[ChatKitPanel] Settings button clicked");
           }
-          alert("Parley v 0.18 running on ChatGPT 5 with data from the Research Nexus Lakehouse");
+          alert("Parley v 6 running on ChatGPT 5 with data from the Research Nexus Lakehouse");
         },
       },
     },
